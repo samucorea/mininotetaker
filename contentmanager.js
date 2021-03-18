@@ -10,26 +10,9 @@ content.addEventListener('keydown', (e) => {
         return
     }
 
+    const newContent = modifyNoteContent(note.currentNoteContent, e.key)
 
-    if (e.key === 'Backspace') {
-
-        const currentContent = note.currentNoteContent
-        const newContent = currentContent.slice(0, -1)
-        note.currentNoteContent = newContent
-
-
-    }
-    else if (e.key === 'Enter') {
-        note.currentNoteContent += '\n'
-    }
-    else if (e.key.length > 1) {
-        return
-    }
-    else {
-        note.currentNoteContent += e.key
-    }
-
-
+    note.currentNoteContent = newContent
 
     localStorage.setItem(note.id, JSON.stringify(note))
 
@@ -38,6 +21,29 @@ content.addEventListener('keydown', (e) => {
 
 function setContent(value) {
     content.textContent = value;
+}
+
+function modifyNoteContent(noteContent, value) {
+    if (value === 'Backspace') {
+
+        const currentContent = noteContent
+        const newContent = currentContent.slice(0, -1)
+        noteContent = newContent
+
+
+    }
+    else if (value === 'Enter') {
+        noteContent += '\n'
+    }
+    else if (value.length > 1) {
+        return
+    }
+    else {
+        noteContent += value
+    }
+
+    return noteContent
+
 }
 
 export { setContent }
