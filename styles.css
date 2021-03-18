@@ -1,0 +1,98 @@
+*{
+    margin:0;
+    padding:0;
+    font-family: sans-serif;
+}
+button{
+    all:unset;
+    cursor:pointer;
+}
+body,html {
+    height: 100%;
+}
+.flex{
+    display: flex;
+ 
+   
+}
+
+.noteapp {
+    margin:auto;
+    width:50%;
+    border: 1px solid black;
+    height:100%;
+}
+
+.notemanager{
+    width:30%;
+    height: 100%;
+    border-right:1px solid black;
+    text-align: right;
+    position: sticky;
+}
+
+
+.notemanager .utils {
+    border-bottom: .1rem solid black;
+    padding: .5rem .2rem .5rem .5rem;
+}
+.notemanager .utils #newButton {
+    border-radius: .5rem;
+    
+    padding: 1rem 2rem 1rem 2rem;
+    color: #fff;
+    background-color: rgb(5, 100, 5);
+}
+
+.notemanager .utils #closeNewButton {
+    padding: 1rem;
+    border-radius:  .4rem;
+    background-color: rgb(124, 18, 18);
+    color:white;
+    display: none;
+}
+
+.notemanager .utils #closeNewButton.active {
+    display: initial;
+}
+
+.notemanager .utils #newButton:hover {
+    background-color: rgb(2, 88, 2);
+}
+
+.notemanager .utils #closeNewButton:hover {
+    background-color:rgb(92, 7, 7)
+}
+#newNoteInput {
+    padding: 1rem;
+    margin: .3rem;
+    text-align:right;
+    border-radius: .4rem;
+    font-size: 1rem;
+    
+}
+
+#newNoteInput:focus {
+    outline-color: rgb(47, 47, 230);
+}
+
+.notemanager .notelist .selected {
+    background-color: blue;
+}
+
+.content{
+    width:100%;
+}
+.content p {
+    margin: 30px;
+    text-align: justify;
+    line-height: 2rem;
+}
+
+ul li {
+    text-align: end;
+    cursor: pointer;
+    list-style: none;
+    margin-top: 10px;
+    font-size: 1.5rem;
+}
