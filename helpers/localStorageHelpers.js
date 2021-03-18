@@ -6,8 +6,8 @@ function upsert(id, value) {
         localStorage.setItem(id, value)
     }
     else {
-        currentValue += value
-        localStorage.setItem(id, currentValue)
+        let newValue = currentValue + value
+        localStorage.setItem(id, newValue)
     }
 }
 

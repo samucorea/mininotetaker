@@ -4,6 +4,8 @@ import { setContent } from './contentmanager.js'
 subscribeEvents()
 
 
+
+
 function subscribeEvents() {
     document.getElementById('newButton').addEventListener('click', addNewNoteInput)
     document.getElementById('closeNewButton').addEventListener('click', closeNewNoteInput)
