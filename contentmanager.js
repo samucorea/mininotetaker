@@ -39,6 +39,7 @@ function setContent(value) {
 
     content.value = value;
     content.style.visibility = 'visible'
+    content.focus()
 
 }
 

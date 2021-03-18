@@ -119,7 +119,7 @@ function addNote(e) {
         const newNoteList = noteManager.children[1]
         const newNoteItem = noteItem(NoteInput.value)
 
-        const newNote = { id: newNoteItem.id, name: NoteInput.value, currentNoteContent: '' }
+        const newNote = { id: newNoteItem.id, name: NoteInput.value, currentNoteContent: '', index: loadStorage.length - 1 }
 
         localStorage.setItem(newNote.id, JSON.stringify(newNote))
 
