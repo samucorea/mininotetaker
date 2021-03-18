@@ -1,6 +1,7 @@
 import noteItem from './components/noteSelector.js'
 import noteInput from './components/NoteInput.js'
 import { setContent } from './contentmanager.js'
+import { getCurrentNoteContent } from './helpers/localStorageHelpers.js'
 subscribeEvents()
 
 
@@ -162,7 +163,13 @@ function getSelectedNote() {
 
     const currentSelectedNote = noteManager.querySelector('.selected')
 
-    return currentSelectedNote.id
+    if (!currentSelectedNote) {
+        return null
+    }
+
+    const currentNoteContent = getCurrentNoteContent(currentSelectedNote.id)
+
+    return { id: currentSelectedNote.id, name: currentSelectedNote.textContent, currentNoteContent }
 }
 
 
