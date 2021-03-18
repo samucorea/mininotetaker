@@ -29,9 +29,6 @@ content.addEventListener('paste', (e) => {
         localStorage.setItem(note.id, JSON.stringify(note))
     }, 0)
 
-
-
-
 })
 
 
@@ -49,7 +46,6 @@ function modifyNoteContent(noteContent, value) {
         const currentContent = noteContent
         const newContent = currentContent.slice(0, -1)
         noteContent = newContent
-
 
     }
     else if (value === 'Enter') {

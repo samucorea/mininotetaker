@@ -1,7 +1,8 @@
 import noteItem from './components/noteSelector.js'
 import noteInput from './components/NoteInput.js'
 import { setContent } from './contentmanager.js'
-import { getCurrentNoteContent, loadStorage } from './helpers/localStorageHelpers.js'
+import { loadStorage } from './helpers/localStorageHelpers.js'
+import subscribeEvents from './eventSubscriber.js'
 
 
 //Event binding and storage loader
@@ -10,17 +11,6 @@ const noteManagerLoaded = loadStorage(getCurrentState())
 setState(noteManagerLoaded)
 //---------------------------------------------------------------------
 
-
-function subscribeEvents() {
-    document.getElementById('newButton').addEventListener('click', addNewNoteInput)
-    document.getElementById('closeNewButton').addEventListener('click', closeNewNoteInput)
-
-    document.querySelectorAll('.note').forEach(note => note.addEventListener('click', selectNote))
-
-    if (document.getElementById('newNoteInput')) {
-        document.getElementById('newNoteInput').addEventListener('keydown', addNote)
-    }
-}
 
 function getCurrentState() {
     const newNoteManager = document.querySelector('.notemanager').cloneNode(true)
@@ -33,9 +23,6 @@ function setState(newNoteManager) {
 
 
     const noteManager = document.querySelector('.notemanager')
-
-
-
 
     while (noteManager.firstChild) {
         noteManager.removeChild(noteManager.firstChild)
@@ -51,8 +38,6 @@ function setState(newNoteManager) {
         input.focus()
     }
 
-
-
     subscribeEvents()
 }
 
@@ -63,15 +48,11 @@ function addNewNoteInput() {
 
     const newNoteManager = getCurrentState()
 
-
-
     const utils = newNoteManager.children[0]
     const newNoteList = newNoteManager.children[1]
 
     const closeButton = utils.children[1]
     const newNoteInput = noteInput()
-
-
 
     if (newNoteList.lastElementChild == null || newNoteList.lastElementChild.nodeName != newNoteInput.nodeName) {
 
@@ -79,8 +60,6 @@ function addNewNoteInput() {
         closeButton.classList.toggle('active')
 
     }
-
-
 
     setState(newNoteManager)
 
@@ -133,30 +112,21 @@ function addNote(e) {
 
 function selectNote(e) {
 
-
-
     const noteId = CSS.escape(e.target.id)
     const noteManager = getCurrentState()
 
     const currentSelectedNote = noteManager.querySelector('.selected')
-
-
-
 
     if (currentSelectedNote) {
 
         currentSelectedNote.classList.toggle('selected')
     }
 
-
-
     const noteList = noteManager.children[1]
     const newSelectedNote = noteList.querySelector(`#${noteId}`)
 
 
     newSelectedNote.classList.toggle('selected')
-
-
 
     setState(noteManager)
 
@@ -185,4 +155,4 @@ function getSelectedNote() {
 }
 
 
-export { getSelectedNote }
+export { getSelectedNote, addNewNoteInput, closeNewNoteInput, selectNote, addNote }
