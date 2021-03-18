@@ -20,11 +20,11 @@ content.addEventListener('paste', (e) => {
 
 
     setTimeout(() => {
-        let newContent = e.target.innerText
+        let newContent = e.target.value
 
         const note = getSelectedNote()
 
-        note.currentNoteContent += '\n' + newContent
+        note.currentNoteContent += newContent
 
         localStorage.setItem(note.id, JSON.stringify(note))
     }, 0)

@@ -22,14 +22,21 @@ function getCurrentNoteContent(id) {
 function loadStorage(noteManager) {
 
     const noteList = noteManager.children[1]
+    const noteArr = []
 
     Object.keys(localStorage).forEach(key => {
         const note = JSON.parse(localStorage.getItem(key))
-        const noteSelector = noteItem(note.name, key)
+        noteArr.push(note)
+
+    })
+
+    noteArr.sort((a, b) => a.index > b.index ? 1 : -1)
+
+    noteArr.forEach(note => {
+        const noteSelector = noteItem(note.name, note.id)
 
         noteList.appendChild(noteSelector)
     })
-
     return noteManager
 
 
