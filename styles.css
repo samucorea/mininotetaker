@@ -80,8 +80,21 @@ body,html {
     background-color: blue;
 }
 
-.content{
-    width:100%;
+
+
+.noteContent {
+    margin: 1rem auto 0 auto;
+    width:60%;
+    height:60%;
+    border: 3px solid lightblue;
+    border-radius: .6rem;
+    resize: none;
+    font-size: large;
+    visibility: hidden;
+}
+
+.noteContent.visible {
+    visibility:visible;
 }
 .content p {
     margin: 30px;

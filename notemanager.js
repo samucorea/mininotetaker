@@ -1,10 +1,14 @@
 import noteItem from './components/noteSelector.js'
 import noteInput from './components/NoteInput.js'
 import { setContent } from './contentmanager.js'
-import { getCurrentNoteContent } from './helpers/localStorageHelpers.js'
+import { getCurrentNoteContent, loadStorage } from './helpers/localStorageHelpers.js'
+
+
+//Event binding and storage loader
 subscribeEvents()
-
-
+const noteManagerLoaded = loadStorage(getCurrentState())
+setState(noteManagerLoaded)
+//---------------------------------------------------------------------
 
 
 function subscribeEvents() {
@@ -51,6 +55,8 @@ function setState(newNoteManager) {
 
     subscribeEvents()
 }
+
+
 
 
 function addNewNoteInput() {
@@ -113,7 +119,9 @@ function addNote(e) {
         const newNoteList = noteManager.children[1]
         const newNoteItem = noteItem(NoteInput.value)
 
+        const newNote = { id: newNoteItem.id, name: NoteInput.value, currentNoteContent: '' }
 
+        localStorage.setItem(newNote.id, JSON.stringify(newNote))
 
         newNoteList.appendChild(newNoteItem)
 
@@ -152,7 +160,12 @@ function selectNote(e) {
 
     setState(noteManager)
 
-    const currentContent = localStorage.getItem(e.target.id) || ''
+    const selectedNote = JSON.parse(localStorage.getItem(e.target.id))
+
+    console.log(e.target.id)
+
+
+    const currentContent = selectedNote.currentNoteContent || ''
 
     setContent(currentContent)
 

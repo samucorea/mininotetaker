@@ -1,6 +1,5 @@
 
 import { getSelectedNote } from './notemanager.js'
-import * as storage from './helpers/localStorageHelpers.js'
 const content = document.querySelector('.noteContent')
 
 content.addEventListener('keydown', (e) => {
@@ -17,10 +16,30 @@ content.addEventListener('keydown', (e) => {
     localStorage.setItem(note.id, JSON.stringify(note))
 
 })
+content.addEventListener('paste', (e) => {
+
+
+    setTimeout(() => {
+        let newContent = e.target.innerText
+
+        const note = getSelectedNote()
+
+        note.currentNoteContent += '\n' + newContent
+
+        localStorage.setItem(note.id, JSON.stringify(note))
+    }, 0)
+
+
+
+
+})
 
 
 function setContent(value) {
-    content.textContent = value;
+
+    content.value = value;
+    content.style.visibility = 'visible'
+
 }
 
 function modifyNoteContent(noteContent, value) {
@@ -36,7 +55,7 @@ function modifyNoteContent(noteContent, value) {
         noteContent += '\n'
     }
     else if (value.length > 1) {
-        return
+        return noteContent
     }
     else {
         noteContent += value
